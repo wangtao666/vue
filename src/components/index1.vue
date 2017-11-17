@@ -92,7 +92,7 @@
 //				console.log('3最后的值：',that.msg2);
 //			})
 		},
-		
+
 		methods:{
 			locationto1 : function(){
 				location.href = '#/login/index1/SerchPage/allotList'
@@ -128,7 +128,7 @@
 						pepoleArray.push(this);
 					}
 //					console.log(pepoleArray)
-					//把过滤掉的值付给people,实现渲染
+					//把过滤掉的值赋给people,实现渲染
 					_this.people = pepoleArray
 			    });
 			  }, response => {
