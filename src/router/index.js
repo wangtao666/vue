@@ -27,17 +27,11 @@ export default new Router({
     {
       path: '/',
       name: 'Login',
-      component: Login,
-      meta:{
-        requiresAuth:true
-      }
+      component: Login
     }, {
       path: '/login',
       name: 'login',
-      component: Login,
-      meta:{
-        requiresAuth:true
-      }
+      component: Login
     }, {
       path: '/login/index1',
       name: 'Index1',
