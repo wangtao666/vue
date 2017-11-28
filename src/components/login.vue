@@ -111,6 +111,26 @@
 				    	location.href='#/login/index1';
 //				    	this.msg = Bus.$emit('setMsg',this.msg);
 //						this.$root.Bus.$emit("setMsg",this.msg)
+
+              //设置cookie
+              function setCookie(c_name,value,expiredays){
+                var exdate=new Date();
+                exdate.setDate(exdate.getDate()+expiredays);
+                document.cookie=c_name+ "=" +value+ ((expiredays==null) ? "" : ";expires="+exdate)
+              }
+              //获取cookie
+              function getCookie(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for(var i=0; i<ca.length; i++) {
+                  var c = ca[i];
+                  while (c.charAt(0)==' ') c = c.substring(1);
+                  if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+                }
+                return "";
+              }
+              setCookie("user","wangtao2",1);
+              console.log('cookie:',getCookie("user"));
 				    }else{
 				    	alert('用户名或者密码错误！')
 				    }
@@ -121,20 +141,20 @@
 			}
 		},
 		mounted(){
-			//动态挂载一个新的元素，该元素可以挂载指令并且生效！
-//			var MyComponent = Vue.extend({
-//				template:'<div v-show="true" @click="asd" style="position: absolute;top: 10px;height: 100px;width: 750px;background: red;">Hello!</div>',
-//				//如果该元素上还要挂载事件，那么事件定义在这里面
-//				methods:{
-//					asd:function(){
-//						alert(1)
-//					}
-//				}
-//			})
-//			//学习文档地址：https://cn.vuejs.org/v2/api/#vm-mount
-//			var component = new MyComponent().$mount()
-//			//如果挂载到app上，那么每个页面都会有，可以用来做导航页签
-//			document.getElementById('el_login').appendChild(component.$el);
+//			动态挂载一个新的元素，该元素可以挂载指令并且生效！
+			var MyComponent = Vue.extend({
+				template:'<div v-show="true" @click="asd" style="position: absolute;top: 10px;height: 100px;width: 750px;background: red;">Hello!</div>',
+				//如果该元素上还要挂载事件，那么事件定义在这里面
+				methods:{
+					asd:function(){
+						alert(1)
+					}
+				}
+			});
+			//学习文档地址：https://cn.vuejs.org/v2/api/#vm-mount
+			var component = new MyComponent().$mount();
+			//如果挂载到app上，那么每个页面都会有，可以用来做导航页签,这里可以添加到指定的元素里  component.$el代表动态添加的元素
+			document.getElementById('el_login').appendChild(component.$el);
 		}
 	}
 

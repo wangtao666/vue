@@ -54,7 +54,7 @@
 				</li>
 			</ul>
 		</div>
-		<router-link to='/login' class="el_ecxt">退出</router-link>
+		<div class="el_ecxt" @click="to_login">退出</div>
 	</div>
 </template>
 
@@ -77,7 +77,22 @@
 		methods:{
 			call_me : function(){
 				location.href = 'tel://13795712016'
-			}
+			},
+      to_login: function() {
+        //设置cookie
+        function setCookie(c_name,value,expiredays){
+          var exdate=new Date()
+          exdate.setDate(exdate.getDate()+expiredays)
+          document.cookie=c_name+ "=" +value+ ((expiredays==null) ? "" : ";expires="+exdate)
+        }
+        //删除cookie
+        function clearCookie(name) {
+          setCookie(name, "", -1);
+        }
+        //当点击退出按钮时删除cookie，并跳转到login
+        clearCookie('user');
+        location.href = '#/login';
+      }
 		}
 	}
 </script>
@@ -221,6 +236,6 @@
 		display: block;
 		margin-left: 35px;
 		position: absolute;
-		bottom: 0px;
+		bottom: 90px;
 	}
 </style>
