@@ -33,28 +33,10 @@ export default {
 	    const toDepth = to.path.split('/').length
 	    const fromDepth = from.path.split('/').length
 	    this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
-
-      //设置cookie
-      function setCookie(c_name,value,expiredays){
-        var exdate=new Date();
-        exdate.setDate(exdate.getDate()+expiredays);
-        document.cookie=c_name+ "=" +value+ ((expiredays==null) ? "" : ";expires="+exdate)
-      }
-      //获取cookie
-      function getCookie(cname) {
-        var name = cname + "=";
-        var ca = document.cookie.split(';');
-        for(var i=0; i<ca.length; i++) {
-          var c = ca[i];
-          while (c.charAt(0)==' ') c = c.substring(1);
-          if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
-        }
-        return "";
-      }
       //如果在登陆页面，登陆成功设置cookie
       if(to.path.split('/')[to.path.split('/').length-1] === 'login'){
+       console.log('cookie:',this.getCookie("user"));
 
-       console.log('cookie:',getCookie("user"));
       //修改密码页面不做限制
       }else if(to.path.split('/')[to.path.split('/').length-1] === 'register'){
 
@@ -63,11 +45,11 @@ export default {
 
       //其余页面如果没有cookie,那么提示并且跳转到登录页面
       }else {
-        if(getCookie("user") == ''){
+        if(this.getCookie("user") == ''){
           alert('您还没登陆呢！想忽悠我吗？赶紧登陆~');
           location.href = '#/login';
         }
-        console.log('cookie:',getCookie("user"));
+        console.log('cookie:',this.getCookie("user"));
       }
 	  }
 	}

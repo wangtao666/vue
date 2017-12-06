@@ -79,18 +79,8 @@
 				location.href = 'tel://13795712016'
 			},
       to_login: function() {
-        //设置cookie
-        function setCookie(c_name,value,expiredays){
-          var exdate=new Date()
-          exdate.setDate(exdate.getDate()+expiredays)
-          document.cookie=c_name+ "=" +value+ ((expiredays==null) ? "" : ";expires="+exdate)
-        }
-        //删除cookie
-        function clearCookie(name) {
-          setCookie(name, "", -1);
-        }
         //当点击退出按钮时删除cookie，并跳转到login
-        clearCookie('user');
+        this.clearCookie('user');
         location.href = '#/login';
       }
 		}
