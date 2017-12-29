@@ -55,7 +55,7 @@
 						type: "blend", //图形验证码默认类型blend:数字字母混合类型、number:纯数字、letter:纯字母
 						code: ""
 					}
-					
+
 					if(Object.prototype.toString.call(options) == "[object Object]"){//判断传入参数类型
 						for(var i in options) { //根据传入的参数，修改默认参数值
 							this.options[i] = options[i];
@@ -63,18 +63,18 @@
 					}else{
 						this.options.id = options;
 					}
-					
+
 					this.options.numArr = "0,1,2,3,4,5,6,7,8,9".split(",");
 					this.options.letterArr = getAllLetter();
-			
+
 					this._init();
 					this.refresh();
 				}
-			
+
 				GVerify.prototype = {
 					/**版本号**/
 					version: '1.0.0',
-					
+
 					/**初始化方法**/
 					_init: function() {
 						var con = document.getElementById(this.options.id);
@@ -92,7 +92,7 @@
 							parent.refresh();
 						}
 					},
-					
+
 					/**生成验证码**/
 					refresh: function() {
 						this.options.code = "";
@@ -102,12 +102,12 @@
 						}else{
 							return;
 						}
-						
+
 						ctx.textBaseline = "middle";
-			
+
 						ctx.fillStyle = randomColor(180, 240);
 						ctx.fillRect(0, 0, this.options.width, this.options.height);
-			
+
 						if(this.options.type == "blend") { //判断验证码类型
 							var txtArr = this.options.numArr.concat(this.options.letterArr);
 						} else if(this.options.type == "number") {
@@ -115,12 +115,12 @@
 						} else {
 							var txtArr = this.options.letterArr;
 						}
-			
+
 						for(var i = 1; i <= 4; i++) {
 							var txt = txtArr[randomNum(0, txtArr.length)];
 							this.options.code += txt;
 							ctx.font = randomNum(this.options.height/2, this.options.height) + 'px SimHei'; //随机生成字体大小
-							ctx.fillStyle = randomColor(50, 160); //随机生成字体颜色		
+							ctx.fillStyle = randomColor(50, 160); //随机生成字体颜色
 							ctx.shadowOffsetX = randomNum(-3, 3);
 							ctx.shadowOffsetY = randomNum(-3, 3);
 							ctx.shadowBlur = randomNum(-3, 3);
@@ -152,7 +152,7 @@
 							ctx.fill();
 						}
 					},
-					
+
 					/**验证验证码**/
 					validate: function(code){
 						var code = code.toLowerCase();
@@ -278,10 +278,12 @@
 					sessionStorage.setItem('ids',ids);
 //					console.log('用户名验证:',data)
 					if(data !== '1'){
+					  var $this = this
 						setTimeout(function(){
 //							console.log('验证码验证:',$(_this.$refs.type1).attr('data-start'))
 							if($(_this.$refs.type1).attr('data-start')=='true'){
-								location.href = '#/login/register/Reset';
+//								location.href = '#/login/register/Reset';
+                  $this.$router.push({path:'/login/register/Reset'})
 							}else{
 								alert('验证码错误！');
 							}

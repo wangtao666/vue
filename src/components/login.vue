@@ -95,6 +95,7 @@
 				var user = $('input[name=el_username]').val()
 				var passwords = $('.el_password1').val()
 				this.$http.get('http://192.168.79.12:8888/read10?user='+user).then(response => {
+				  var $this = this;
 					//请求到的数据
 				    var data2 = response.body;
 				    var houtai_user = data2[0].user;
@@ -111,7 +112,9 @@
 				    if(user===houtai_user&&passwords===houtai_password){
               this.setCookie("user","wangtao2",1);
               console.log('cookie:',this.getCookie("user"));
-              location.href='#/login/index1';
+//              location.href='#/login/index1';
+                //如果用this.$router.push来跳转路由，记得查看this指向，不然抠破头你也找不到问题所在！！！！！
+                $this.$router.push({path:'/login/index1'})
 				    }else{
 				    	alert('用户名或者密码错误！')
 				    }

@@ -10,10 +10,12 @@ import animate from 'vue2-animate/dist/vue2-animate.min.css'
 import VueResource from 'vue-resource'
 import ElementUI from 'element-ui'
 import VueCookie from 'vue-cookie'
+import Router from 'vue-router'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI);
 Vue.use(VueResource);
 Vue.use(VueCookie);
+Vue.use(Router);
 Vue.config.productionTip = false;
 //设置cookie
 Vue.prototype.setCookie = function(c_name,value,expiredays){
